@@ -1,9 +1,8 @@
 name: Apache Kafka
-description: |
-  (Experimental) Kafka cluster with management JEFFK
+description: Kafka cluster with management and UI
 version: 0.10.2.0-rancher
 category: Clustering
-maintainer: "Jeff Kolb <jeff.kolb@intlfcstone.com>"
+maintainer: "Dongyan Li<dongyan.li@intlfcstone.com>"
 minimum_rancher_version: v0.59.0
 license: 
-projectURL: https://github.com/junkiebev/catalog-dockerfiles
+projectURL: https://github.com/akking/community-catalog

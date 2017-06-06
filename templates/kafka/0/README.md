@@ -1,4 +1,4 @@
-# Apache Kafka with Rest Proxy and UI (Experimental) JEFFK, DongyanL
+# Apache Kafka with Rest Proxy and UI 
 
 ### Info:
 
