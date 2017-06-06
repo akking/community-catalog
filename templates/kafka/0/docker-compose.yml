@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   broker:
     tty: true
@@ -17,8 +17,6 @@ services:
       - ADVERTISE_PUB_IP=${kafka_pub_ip}
       - ENABLE_JMX=${enable_jmx}
       - JMX_PORT=${jmx_port}
-    ports:
-      - ${jmx_port}:${jmx_port}
     external_links:
       - ${zk_link}:zk
     labels: 
