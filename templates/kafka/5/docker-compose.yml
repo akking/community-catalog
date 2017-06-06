@@ -16,7 +16,7 @@ broker:
     - ENABLE_JMX=${enable_jmx}
     - JMX_PORT=${jmx_port}
   ports:
-    - "9092:9092"
+    - "9092"
     - ${jmx_port}:${jmx_port}
   external_links:
     - ${zk_link}:zk
@@ -49,7 +49,7 @@ broker-volume:
   image: jeffkolb/alpine-volume:v0.1.0
 kafka-manager:
   ports:
-  - 9000:9000/tcp
+  - "9000/tcp"
   image: jeffkolb/kafka-manager:1.3.3.4
   environment:
     - ZK_HOSTS=zk:2181
@@ -60,3 +60,53 @@ kafka-manager:
   labels: 
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
+
+rest:
+  image: confluentinc/cp-kafka-rest:3.2.1
+  environment:
+    KAFKA_REST_ZOOKEEPER_CONNECT: zk:2181
+    KAFKA_REST_LISTENERS: http://0.0.0.0:8082
+    KAFKA_REST_SCHEMA_REGISTRY_URL: schema-registry:8081
+    KAFKA_REST_HOST_NAME: 10.40.17.88
+    KAFKA_REST_DEBUG: 'true'
+    KAFKA_REST_BOOTSTRAP_SERVERS: broker:9092
+    KAFKA_REST_ID: dongyanl
+  stdin_open: true
+  external_links:
+  - zookeeper/zk:zk
+  tty: true
+  links:
+  - schema-registry:schema-registry
+  - broker:broker
+  labels:
+    io.rancher.container.pull_image: always
+
+kafka-topics-ui:
+  image: landoop/kafka-topics-ui
+  environment:
+    KAFKA_REST_PROXY_URL: http://rest:8082/
+    PROXY: 'true'
+  stdin_open: true
+  tty: true
+  links:
+  - rest:rest
+  ports:
+  - "8000/tcp"
+  labels:
+    io.rancher.container.pull_image: always
+
+schema-registry:
+  image: confluentinc/cp-schema-registry:3.2.1
+  environment:
+    SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zk:2181
+    SCHEMA_REGISTRY_HOST_NAME: 10.40.17.88
+    SCHEMA_REGISTRY_DEBUG: 'true'
+    SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+  stdin_open: true
+  external_links:
+  - zookeeper/zk:zk
+  tty: true
+  ports:
+  - "8081/tcp"
+  labels:
+    io.rancher.container.pull_image: always
