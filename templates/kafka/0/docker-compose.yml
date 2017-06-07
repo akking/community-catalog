@@ -14,7 +14,7 @@ kafka:
     - zookeeper:zk
   environment:
     - KAFKA_ZOOKEEPER_CONNECT=zk:2181
-    - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+    - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092/
   
 kafka-manager:
   image: sheepkiller/kafka-manager
@@ -48,9 +48,9 @@ kafka-rest-proxy:
   environment:
     - KAFKA_REST_ZOOKEEPER_CONNECT=zookeeper:2181
     - KAFKA_REST_LISTENERS=http://kafka-rest-proxy:8082/
-    - KAFKA_REST_BOOTSTRAP_SERVERS=PLAINTEXT://kafka:9092
+    - KAFKA_REST_BOOTSTRAP_SERVERS=PLAINTEXT://kafka:9092/
     - KAFKA_REST_HOST_NAME=kafka-rest-proxy
-    - KAFKA_REST_SCHEMA_REGISTRY_URL=http://schemaregistry:8081
+    - KAFKA_REST_SCHEMA_REGISTRY_URL=http://schemaregistry:8081/
 
 kafka-ui:
   hostname: kafka-ui
