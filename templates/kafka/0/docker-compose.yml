@@ -13,6 +13,7 @@ kafka:
   environment:
     - KAFKA_ZOOKEEPER_CONNECT=zk:2181
     - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+    - KAFKA_ZOOKEEPER_SET_ACL=false
 kafka-manager:
   image: sheepkiller/kafka-manager
   ports: 
@@ -30,6 +31,7 @@ schemaregistry:
     - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
     - SCHEMA_REGISTRY_HOST_NAME=schemaregistry
     - SCHEMA_REGISTRY_LISTENERS=http://0.0.0.0:8081
+    - SCHEMA_REGISTRY_KAFKA_ZOOKEEPER_SET_ACL=false
 kafka-rest-proxy:
   image: confluentinc/cp-kafka-rest:3.2.1
   ports:
@@ -38,6 +40,7 @@ kafka-rest-proxy:
     - zookeeper
     - kafka
     - schemaregistry
+    - kafka-rest-proxy
   environment:
     - KAFKA_REST_ZOOKEEPER_CONNECT=zookeeper:2181
     - KAFKA_REST_LISTENERS=http://kafka-rest-proxy:8082
