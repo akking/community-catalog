@@ -4,7 +4,6 @@ zookeeper:
   environment:
     - ZOOKEEPER_CLIENT_PORT=2181
     - ZOOKEEPER_SERVER_ID=dongyanl
-
 kafka:
   hostname: kafka
   image: confluentinc/cp-kafka
@@ -15,7 +14,6 @@ kafka:
   environment:
     - KAFKA_ZOOKEEPER_CONNECT=zk:2181
     - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
-  
 kafka-manager:
   image: sheepkiller/kafka-manager
   ports: 
@@ -24,7 +22,6 @@ kafka-manager:
     - zookeeper
   environment:
     - ZK_HOSTS=zookeeper:2181
-
 schemaregistry:
   hostname: schemaregistry
   image: confluentinc/cp-schema-registry
@@ -35,7 +32,6 @@ schemaregistry:
     - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
     - SCHEMA_REGISTRY_HOST_NAME=schemaregistry
     - SCHEMA_REGISTRY_LISTENERS=http://0.0.0.0:8081
-    
 kafka-rest-proxy:
   hostname: kafka-rest-proxy
   image: confluentinc/cp-kafka-rest
@@ -51,7 +47,6 @@ kafka-rest-proxy:
     - KAFKA_REST_BOOTSTRAP_SERVERS=PLAINTEXT://kafka:9092
     - KAFKA_REST_HOST_NAME=kafka-rest-proxy
     - KAFKA_REST_SCHEMA_REGISTRY_URL=http://schemaregistry:8081
-
 kafka-ui:
   hostname: kafka-ui
   image: landoop/kafka-topics-ui
