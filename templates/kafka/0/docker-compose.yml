@@ -14,7 +14,7 @@ kafka:
     - zookeeper:zk
   environment:
     - KAFKA_ZOOKEEPER_CONNECT=zk:2181
-    - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092/
+    - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
   
 kafka-manager:
   image: sheepkiller/kafka-manager
