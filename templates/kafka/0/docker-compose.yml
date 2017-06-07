@@ -11,6 +11,7 @@ kafka:
     - "9092"
   links:
     - zookeeper:zk
+    - kafka
   environment:
     - KAFKA_ZOOKEEPER_CONNECT=zk:2181
     - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
