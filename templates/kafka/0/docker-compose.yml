@@ -4,7 +4,6 @@ zookeeper:
     driver: syslog
     options:
       syslog-address: tcp://data.logentries.com:16314
-      tags: "{{.ImageName}}/{{.Name}}/{{.ID}}"
   environment:
     - ZOOKEEPER_CLIENT_PORT=2181
     - ZOOKEEPER_SERVER_ID=dongyanl
@@ -14,7 +13,6 @@ kafka:
     driver: syslog
     options:
       syslog-address: tcp://data.logentries.com:16314
-      tags: "{{.ImageName}}/{{.Name}}/{{.ID}}"
   ports:
     - "9092"
   links:
@@ -29,7 +27,6 @@ kafka-manager:
     driver: syslog
     options:
       syslog-address: tcp://data.logentries.com:16314
-      tags: "{{.ImageName}}/{{.Name}}/{{.ID}}"
   image: sheepkiller/kafka-manager
   ports: 
     - "9000"
@@ -42,7 +39,6 @@ schemaregistry:
     driver: syslog
     options:
       syslog-address: tcp://data.logentries.com:16314
-      tags: "{{.ImageName}}/{{.Name}}/{{.ID}}"
     image: confluentinc/cp-schema-registry:3.2.1
   links:
     - zookeeper
@@ -57,7 +53,6 @@ kafka-rest-proxy:
     driver: syslog
     options:
       syslog-address: tcp://data.logentries.com:16314
-      tags: "{{.ImageName}}/{{.Name}}/{{.ID}}"
   image: confluentinc/cp-kafka-rest:3.2.1
   ports:
     - "8082"
@@ -76,7 +71,6 @@ kafka-ui:
   logging:
     driver: syslog
     options:
-      tags: "{{.ImageName}}/{{.Name}}/{{.ID}}"
       syslog-address: tcp://data.logentries.com:16314
   image: landoop/kafka-topics-ui:0.9.2
   links:
