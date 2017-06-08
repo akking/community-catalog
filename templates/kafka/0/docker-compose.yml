@@ -39,10 +39,10 @@ kafka-manager:
     - ZK_HOSTS=zookeeper:2181
 schemaregistry:
   logging:
-  driver: syslog
-    options:
-      syslog-address: tcp://data.logentries.com:16314
-      tags: "{{.ImageName}}/{{.Name}}/{{.ID}}"
+    driver: syslog
+      options:
+        syslog-address: tcp://data.logentries.com:16314
+        tags: "{{.ImageName}}/{{.Name}}/{{.ID}}"
     image: confluentinc/cp-schema-registry:3.2.1
   links:
     - zookeeper
