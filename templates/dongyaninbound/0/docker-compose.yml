@@ -1,0 +1,2 @@
+acceptor:
+  image: dli16/dongyanfixinbound:1.2

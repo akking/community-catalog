@@ -1,0 +1,7 @@
+.catalog:
+  name: dongyan fix inbound
+  version: 1.2
+  description: |
+    .Net on Docker
+  minimum_rancher_version: v1.5.0
+  maintainer: "Dongyan Li"
